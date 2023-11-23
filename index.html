@@ -3,12 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    
+    <title>Weather Dashboard</title>
 </head>
 <body>
-    
+    <header class="p-5 mb-4 text-center header" id="header">
+        <h1>Weather Dashboard</h1>
+        <h2>Search for Your City Below</h2>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md col-xl-4">
+                <div class="card mb-3 text-center">
+                    <input class="form-control form-control-lg" type="text" placeholder="Enter City Here" id="searchForm">
+                    <button type="button" class="btn btn-primary btn-lg"  id="searchButton">Get Forecast</button>
+                    <div class="card mt-5" id="searchHistory">
+                        <button type="button" class="btn btn-primary btn-lg mb-3">Minneapolis</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md col-xl-8">
+                <div class="container" id="currentCity">
+                    <div class="border border-primary p-3">
+                        <h3>Current City: <span class="cityName"></span></h3>
+                        <h4>Date: <span class="currentDate"></span></h4>
+                        <div class="row mt-4 p-3">
+                            <p>Temp: <span class="temp"></span></p>
+                            <p>Wind: <span class="wind"></span></p>
+                            <p>Humidity: <span class="humidity"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container d-flex mt-4" id="fiveDayCards">
+                    <div class="card col border border-primary">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            This is where the card body is
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+crossorigin="anonymous"></script>
 <script src="/assets/script.js"></script>
 </html>
