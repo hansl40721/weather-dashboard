@@ -8,9 +8,9 @@ var wind = document.querySelector('.wind');
 var humidity = document.querySelector('.humidity');
 var cardContainer = document.getElementById("fiveDayCards");
 var cityToSearch = document.getElementById('searchForm');
-var apiKey = "53a5d7cd95056d4670ee8a21a7e50e28";
 var lat;
 var lon;
+import { apiKey } from './config.js';
 
 function getCoordinates() {
     let value = cityToSearch.value.trim();
@@ -64,7 +64,7 @@ function searchHandler() {
 
                 // create 5-day forecast cards and append onscreen
                 createCards(data);
-
+                searchHistoryHandler(data[1].name);
             })
             .catch(err => {
                 console.error(err);
@@ -72,6 +72,7 @@ function searchHandler() {
 }
 
 function createCards(data) {
+    cardContainer.innerHTML = "";
     var index = 2;
 
     for (let i = 0; i < 5; i++) {
@@ -79,7 +80,7 @@ function createCards(data) {
         let unixDate = data[0].list[index].dt;
         let date = new Date(unixDate * 1000);
 
-
+        // create individual cards
         const forecastCard = document.createElement("div");
         forecastCard.setAttribute("class", "card col border border-primary");
         forecastCard.innerHTML = `
@@ -99,11 +100,20 @@ function createCards(data) {
             </div>
         `;
 
+        // append to container
         cardContainer.append(forecastCard);
+        // data returns in 3-hour intervals, so every 8 indexes marks a 24 hour cycle
         index += 8;
     }
 }
 
+function searchHistoryHandler(cityName) {
+    const newButton = document.createElement("button");
+    newButton.setAttribute("class", "btn btn-primary btn-lg mb-3");
+    newButton.textContent = cityName;
+
+    searchHistory.append(newButton);
+}
 
 
 searchButton.addEventListener("click", getCoordinates);
