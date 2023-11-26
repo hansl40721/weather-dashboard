@@ -8,12 +8,20 @@ var wind = document.querySelector('.wind');
 var humidity = document.querySelector('.humidity');
 var cardContainer = document.getElementById("fiveDayCards");
 var cityToSearch = document.getElementById('searchForm');
+var clearHistory = document.getElementById("clearHistory");
+var pastSearches = [];
+var apiKey = "53a5d7cd95056d4670ee8a21a7e50e28";
 var lat;
 var lon;
-import { apiKey } from './config.js';
+let value;
 
-function getCoordinates() {
-    let value = cityToSearch.value.trim();
+function getCoordinates(event) {
+    if(event.target.matches(".past")) {
+        value = event.target.textContent;
+    } else {
+        value = cityToSearch.value.trim();
+    }
+    
 
     // call api to find latitude and longitude of user search  
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${apiKey}`)
@@ -108,12 +116,51 @@ function createCards(data) {
 }
 
 function searchHistoryHandler(cityName) {
-    const newButton = document.createElement("button");
-    newButton.setAttribute("class", "btn btn-primary btn-lg mb-3");
-    newButton.textContent = cityName;
+    if(pastSearches.includes(cityName)) {
+        return;
+    } else {
+        const newButton = document.createElement("button");
+        newButton.setAttribute("class", "btn btn-primary btn-lg mb-3 past");
+        newButton.textContent = cityName;
 
-    searchHistory.append(newButton);
+        searchHistory.prepend(newButton);
+        pastSearches.unshift(cityName);
+        storeSearched();
+    }
 }
+
+function storeSearched() {
+    localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
+}
+
+function init() {
+    var storedSearches = JSON.parse(localStorage.getItem("pastSearches"));
+
+    if(storedSearches !== null) {
+        pastSearches = storedSearches;
+        clearHistory.style.visibility = "visible"; 
+    }
+    for (let i = 0; i < pastSearches.length; i++) {
+        const newButton = document.createElement("button");
+        newButton.setAttribute("class", "btn btn-primary btn-lg mb-3 past");
+        newButton.textContent = pastSearches[i];
+
+        searchHistory.append(newButton);
+    }
+}
+
+function clear() {
+    window.localStorage.clear();
+
+    searchHistory.innerHTML = "";
+    clearHistory.style.visibility = "hidden";
+
+    pastSearches = [];
+} 
 
 
 searchButton.addEventListener("click", getCoordinates);
+searchHistory.addEventListener("click", getCoordinates);
+clearHistory.addEventListener("click", clear);
+
+init();
