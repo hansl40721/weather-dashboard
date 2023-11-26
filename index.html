@@ -11,7 +11,7 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header class="p-5 mb-4 text-center header" id="header">
+    <header class="p-3 mb-4 text-center header" id="header">
         <h1>Weather Dashboard</h1>
         <h2>Search for Your City Below</h2>
     </header>
@@ -29,22 +29,17 @@
             <div class="col-md col-xl-8">
                 <div class="container" id="currentCity">
                     <div class="border border-primary p-3">
-                        <h3>Current City: <span class="cityName"></span></h3>
+                        <h3>Current City: <span class="cityName"></span><span class="iconSpan"></span></h3>
                         <h4>Date: <span class="currentDate"></span></h4>
                         <div class="row mt-4 p-3">
-                            <p>Temp: <span class="temp"></span></p>
-                            <p>Wind: <span class="wind"></span></p>
-                            <p>Humidity: <span class="humidity"></span></p>
+                            <p class="hidden">Temp: <span class="temp hidden"></span>°F</p>
+                            <p class="hidden">Wind: <span class="wind hidden"></span> MPH</p>
+                            <p class="hidden">Humidity: <span class="humidity hidden"></span>%</p>
                         </div>
                     </div>
                 </div>
                 <div class="container d-flex mt-4" id="fiveDayCards">
-                    <div class="card col border border-primary">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            This is where the card body is
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
