@@ -90,11 +90,9 @@ function createCards(data) {
 
         // create individual cards
         const forecastCard = document.createElement("div");
-        forecastCard.setAttribute("class", "card col border border-primary");
+        forecastCard.setAttribute("class", "card col border border-primary mx-1");
         forecastCard.innerHTML = `
-            <div class="card-header">${date.toLocaleDateString("en-US")} 
-                
-            </div>
+            <div class="card-header">${date.toLocaleDateString("en-US")}</div>
             <div class="card-body">
                 <span class="cardImage">
                     <img src="https://openweathermap.org/img/wn/${data[0].list[index].weather[0].icon}@2x.png"><img>

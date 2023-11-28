@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md col-xl-4">
                 <div class="card mb-3 text-center">
-                    <input class="form-control form-control-lg" type="text" placeholder="Enter City Here" id="searchForm">
+                    <input class="form-control form-control-lg border-primary" type="text" placeholder="Enter City Here" id="searchForm">
                     <button type="button" class="btn btn-primary btn-lg"  id="searchButton">Get Forecast</button>
                     <button type="button" class="btn btn-secondary btn-sm mt-2 hidden" id="clearHistory">Clear History</button>
                     <div class="card mt-5" id="searchHistory">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md col-xl-8">
                 <div class="container" id="currentCity">
-                    <div class="border border-primary p-3">
+                    <div class="border border-primary p-3" id="blueSpace">
                         <h3>Current City: <span class="cityName"></span><span class="iconSpan"></span></h3>
                         <h4>Date: <span class="currentDate"></span></h4>
                         <div class="row mt-4 p-3">
@@ -39,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="container mt-2"><h3>5-Day Forecast:</h3></div>
                 <div class="container d-flex mt-4" id="fiveDayCards">
                     
                 </div>
